@@ -22,9 +22,7 @@ addButton.addEventListener("click", function () {
   let removeButton = document.createElement("button");
   removeButton.innerHTML = "remove";
   bookshelf.appendChild(removeButton);
-
-  
-
+removeButton.setAttribute('id','remove-button');
   books.push({ Title: title.value, Author: author.value });
 
   let stringified = JSON.stringify(books);
@@ -50,5 +48,7 @@ function recover() {
     bookshelf.appendChild(removeButton);
   }
 }
+//remove button functioning
+let removebook=document.getElementById("#remove-button");
 
 window.onload = recover;
