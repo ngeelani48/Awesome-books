@@ -1,24 +1,54 @@
 //Button for the form section
-let addButton = document.querySelector("#button");
-
+let addButton = document.querySelector(".submit");
 // Div element for the bookshelf
-let bookshelf = document.querySelector("#bookshelf");
+let bookshelf = document.querySelector(".bookshelf");
 
-let title = document.querySelector("#title");
-let author = document.querySelector("#author");
-let arr = [];
+let title = document.getElementById("title");
+let author = document.getElementById("author");
+
+// The collection that holds the author and the title
+let books = [];
+
+function creation(element, text, parent) {
+  let item = document.createElement(element);
+  item.innerHTML = text;
+  parent.appendChild(item);
+}
 
 addButton.addEventListener("click", function () {
-  let titleText = title.value;
-  let authorText = author.value;
+  creation("p", title.value, bookshelf);
+  creation("p", author.value, bookshelf);
 
-  bookshelf.innerHTML = titleText
-  bookshelf.innerHTML = authorText
+  let removeButton = document.createElement("button");
+  removeButton.innerHTML = "remove";
+  bookshelf.appendChild(removeButton);
 
-  arr.push(titleText);
-  arr.push(authorText);
+  
+
+  books.push({ Title: title.value, Author: author.value });
+
+  let stringified = JSON.stringify(books);
+
+  localStorage.setItem("data", stringified);
+
+  title.value = "";
+  author.value = "";
 });
 
-console.log(arr);
+// Function to get the data from LocalStorage and
+// Append them back to the html
 
+function recover() {
+  let data = JSON.parse(localStorage.getItem("data"));
 
+  for (let i = 0; i < data.length; i++) {
+    creation("p", data[i].Title, bookshelf);
+    creation("p", data[i].Author, bookshelf);
+
+    let removeButton = document.createElement("button");
+    removeButton.innerHTML = "remove";
+    bookshelf.appendChild(removeButton);
+  }
+}
+
+window.onload = recover;
