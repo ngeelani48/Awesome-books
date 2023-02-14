@@ -18,6 +18,10 @@ class BookCollection {
     return this.author.value;
   }
 }
+function saveData() {
+  const stringify = JSON.stringify(books);
+  localStorage.setItem('data', stringify);
+}
 
 function removeItem(i) {
   books.splice(i, 1);
@@ -73,8 +77,4 @@ addButton.addEventListener('click', () => {
   titleInput.value = '';
   authorInput.value = '';
 });
-
-function saveData() {
-  const stringify = JSON.stringify(books);
-  localStorage.setItem('data', stringify);
-}
+removeItem();
