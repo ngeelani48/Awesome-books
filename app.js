@@ -19,6 +19,31 @@ class BookCollection {
   }
 }
 
+function removeItem(i) {
+  books.splice(i, 1);
+
+  let items = '';
+  books.forEach((item, index) => {
+    items += `<div class="coll${index} collection">
+ <div class='bookinfo'>
+ <p class='title'>${item.title} by</p>
+ <p class='author'>${item.author}</p>
+ </div>
+ <button class='remove' onclick="removeItem(${index})">remove</button>
+ </div>`;
+  });
+
+  bookCollection.innerHTML = '';
+  bookCollection.innerHTML = items;
+
+  let stringify = JSON.stringify(books);
+  if (stringify === '[]') {
+    stringify = '';
+  }
+
+  localStorage.setItem('data', stringify);
+}
+
 const newBook = new BookCollection(titleInput, authorInput);
 
 addButton.addEventListener('click', () => {
@@ -43,40 +68,13 @@ addButton.addEventListener('click', () => {
   });
 
   bookCollection.innerHTML = items;
-  /* eslint-disable no-use-before-define */
+
   saveData();
   titleInput.value = '';
   authorInput.value = '';
 });
 
-/* eslint-disable no-use-before-define */
 function saveData() {
   const stringify = JSON.stringify(books);
-  localStorage.setItem('data', stringify);
-}
-
-/* eslint-disable no-unused-vars */
-function removeItem(i) {
-  books.splice(i, 1);
-
-  let items = '';
-  books.forEach((item, index) => {
-    items += `<div class="coll${index} collection">
- <div class='bookinfo'>
- <p class='title'>${item.title} by</p>
- <p class='author'>${item.author}</p>
- </div>
- <button class='remove' onclick="removeItem(${index})">remove</button>
- </div>`;
-  });
-
-  bookCollection.innerHTML = '';
-  bookCollection.innerHTML = items;
-
-  let stringify = JSON.stringify(books);
-  if (stringify === '[]') {
-    stringify = '';
-  }
-
   localStorage.setItem('data', stringify);
 }
