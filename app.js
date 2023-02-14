@@ -9,6 +9,7 @@ class BookCollection {
     this.title = title;
     this.author = author;
   }
+  
 
   getTitle() {
     return this.title.value;
