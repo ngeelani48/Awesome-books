@@ -1,61 +1,60 @@
+const bookCollection = document.querySelector('.bookshelf');
+const addButton = document.querySelector('.submit');
+const titleInput = document.getElementById('title');
+const authorInput = document.getElementById('author');
 
+const books = [];
 
-/* eslint disable */
-let bookCollection = document.querySelector('.bookshelf');
-let addButton = document.querySelector('.submit')
-let titleInput = document.getElementById('title')
-let authorInput = document.getElementById('author')
+addButton.addEventListener('click', () => {
+  const titletext = titleInput.value;
+  const authorText = authorInput.value;
 
-let books = [];
-
-
-addButton.addEventListener('click', function(){
-  let titletext = titleInput.value;
-  let authorText = authorInput.value
-
-  books.push({title: titletext, author: authorText})  
+  books.push({ title: titletext, author: authorText });
   let items = '';
 
   books.forEach((item, index) => {
-     items+=  
-    `<div class="coll${index}">
+    items
+    += `<div class="coll${index}">
     <p>${item.title}</p>
     <p>${item.author}</p>
     <button onclick="removeItem(${index})">remove</button>
     </div>`;
-  })
+  });
 
-  bookCollection.innerHTML = items
-  saveData()
-  titleInput.value = ''
-  authorInput.value = ''
-})
+  bookCollection.innerHTML = items;
+  /* eslint-disable no-use-before-define */
+  saveData();
+  titleInput.value = '';
+  authorInput.value = '';
+});
 
+/* eslint-disable no-use-before-define */
 function saveData() {
-  let stringify = JSON.stringify(books);
-  localStorage.setItem('data', stringify)
+  const stringify = JSON.stringify(books);
+  localStorage.setItem('data', stringify);
 }
 
+/* eslint-disable no-unused-vars */
 function removeItem(i) {
+  books.splice(i, 1);
 
-books.splice(i, 1)
-
-let items = ''
-books.forEach((item, index) => {
- items+=  
- `<div class="coll${index}">
+  let items = '';
+  books.forEach((item, index) => {
+    items
+ += `<div class="coll${index}">
  <p>${item.title}</p>
  <p>${item.author}</p>
  <button onclick="removeItem(${index})">remove</button>
  </div>`;
-})
-bookCollection.innerHTML = ''
-bookCollection.innerHTML = items
+  });
+  bookCollection.innerHTML = '';
+  bookCollection.innerHTML = items;
 
   // books =  books.filter(x=> books.indexOf(x) !== i);
- let stringify = JSON.stringify(books);
- stringify == '[]'? stringify = '': 0;
- localStorage.setItem('data', stringify)
+  let stringify = JSON.stringify(books);
+  if (stringify === '[]') {
+    stringify = '';
+  }
 
+  localStorage.setItem('data', stringify);
 }
-
