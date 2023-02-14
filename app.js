@@ -47,7 +47,7 @@ function removeItem(i) {
  <button onclick="removeItem(${index})">remove</button>
  </div>`;
   });
-  
+
   bookCollection.innerHTML = '';
   bookCollection.innerHTML = items;
 
