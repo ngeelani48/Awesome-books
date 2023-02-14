@@ -1,54 +1,60 @@
-//Button for the form section
-let addButton = document.querySelector(".submit");
-// Div element for the bookshelf
-let bookshelf = document.querySelector(".bookshelf");
+const bookCollection = document.querySelector('.bookshelf');
+const addButton = document.querySelector('.submit');
+const titleInput = document.getElementById('title');
+const authorInput = document.getElementById('author');
 
-let title = document.getElementById("title");
-let author = document.getElementById("author");
+const books = [];
 
-// The collection that holds the author and the title
-let books = [];
+addButton.addEventListener('click', () => {
+  const titletext = titleInput.value;
+  const authorText = authorInput.value;
 
-function creation(element, text, parent) {
-  let item = document.createElement(element);
-  item.innerHTML = text;
-  parent.appendChild(item);
-}
+  books.push({ title: titletext, author: authorText });
+  let items = '';
 
-addButton.addEventListener("click", function () {
-  creation("p", title.value, bookshelf);
-  creation("p", author.value, bookshelf);
+  books.forEach((item, index) => {
+    items
+    += `<div class="coll${index}">
+    <p>${item.title}</p>
+    <p>${item.author}</p>
+    <button onclick="removeItem(${index})">remove</button>
+    </div>`;
+  });
 
-  let removeButton = document.createElement("button");
-  removeButton.innerHTML = "remove";
-  bookshelf.appendChild(removeButton);
-
-  
-
-  books.push({ Title: title.value, Author: author.value });
-
-  let stringified = JSON.stringify(books);
-
-  localStorage.setItem("data", stringified);
-
-  title.value = "";
-  author.value = "";
+  bookCollection.innerHTML = items;
+  /* eslint-disable no-use-before-define */
+  saveData();
+  titleInput.value = '';
+  authorInput.value = '';
 });
 
-// Function to get the data from LocalStorage and
-// Append them back to the html
-
-function recover() {
-  let data = JSON.parse(localStorage.getItem("data"));
-
-  for (let i = 0; i < data.length; i++) {
-    creation("p", data[i].Title, bookshelf);
-    creation("p", data[i].Author, bookshelf);
-
-    let removeButton = document.createElement("button");
-    removeButton.innerHTML = "remove";
-    bookshelf.appendChild(removeButton);
-  }
+/* eslint-disable no-use-before-define */
+function saveData() {
+  const stringify = JSON.stringify(books);
+  localStorage.setItem('data', stringify);
 }
 
-window.onload = recover;
+/* eslint-disable no-unused-vars */
+function removeItem(i) {
+  books.splice(i, 1);
+
+  let items = '';
+  books.forEach((item, index) => {
+    items
+ += `<div class="coll${index}">
+ <p>${item.title}</p>
+ <p>${item.author}</p>
+ <button onclick="removeItem(${index})">remove</button>
+ </div>`;
+  });
+  bookCollection.innerHTML = '';
+  bookCollection.innerHTML = items;
+
+  // books =  books.filter(x=> books.indexOf(x) !== i);
+  let stringify = JSON.stringify(books);
+  if (stringify === '[]') {
+    stringify = '';
+  }
+
+  localStorage.setItem('data', stringify);
+}
