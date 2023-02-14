@@ -1,54 +1,63 @@
-//Button for the form section
-let addButton = document.querySelector(".submit");
-// Div element for the bookshelf
 let bookshelf = document.querySelector(".bookshelf");
+let titleInput = document.getElementById("title");
+let authorInput = document.getElementById("author");
+let addButton = document.getElementById("add");
 
-let title = document.getElementById("title");
-let author = document.getElementById("author");
-
-// The collection that holds the author and the title
 let books = [];
 
-function creation(element, text, parent) {
-  let item = document.createElement(element);
-  item.innerHTML = text;
-  parent.appendChild(item);
-}
+function appendBooks() {
+  let titleValue = titleInput.value;
+  let authorValue = authorInput.value;
 
-addButton.addEventListener("click", function () {
-  creation("p", title.value, bookshelf);
-  creation("p", author.value, bookshelf);
+  let collection = document.createElement("div");
+  collection.classList.add("collection");
+  bookshelf.appendChild(collection);
+ let index = Array.from(bookshelf.children).indexOf(collection);
+
+  let title = document.createElement("p");
+  title.classList.add("title");
+  title.innerHTML = titleValue;
+
+  let author = document.createElement("p");
+  author.classList.add("author");
+  author.innerHTML = authorValue;
 
   let removeButton = document.createElement("button");
+  removeButton.classList.add("remove");
   removeButton.innerHTML = "remove";
-  bookshelf.appendChild(removeButton);
 
-  
-
-  books.push({ Title: title.value, Author: author.value });
-
-  let stringified = JSON.stringify(books);
-
-  localStorage.setItem("data", stringified);
-
-  title.value = "";
-  author.value = "";
-});
-
-// Function to get the data from LocalStorage and
-// Append them back to the html
-
-function recover() {
-  let data = JSON.parse(localStorage.getItem("data"));
-
-  for (let i = 0; i < data.length; i++) {
-    creation("p", data[i].Title, bookshelf);
-    creation("p", data[i].Author, bookshelf);
-
-    let removeButton = document.createElement("button");
-    removeButton.innerHTML = "remove";
-    bookshelf.appendChild(removeButton);
+  removeButton.onclick = () => {
+    let item = document.querySelectorAll('.collection');
+    bookshelf.removeChild(item[index]);
   }
+
+  collection.appendChild(title);
+  collection.appendChild(author);
+  collection.appendChild(removeButton);
+
+  titleInput.value = "";
+  authorInput.value = "";
+
+  toLocalStorage(titleValue, authorValue);
 }
 
-window.onload = recover;
+
+
+function toLocalStorage(title, author) {
+  books.push({ Title: title, Author: author });
+
+  let stringify = JSON.stringify(books);
+
+  localStorage.setItem("books", stringify);
+}
+
+function removeItem(id) {
+  let item = bookshelf.children[id];
+  bookshelf.removeChild(item);
+}
+
+
+
+
+
+addButton.addEventListener("click", appendBooks);
