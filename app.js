@@ -17,11 +17,6 @@ class BookCollection {
   getAuthor() {
    return this.author.value;
   }
-
-  addButton() {
-    const titleText = this.getTitle();
-    const authorText = this.getAuthor()
-  }
 }
 
 let newBook = new BookCollection(titleInput, authorInput);
