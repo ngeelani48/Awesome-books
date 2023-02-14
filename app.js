@@ -5,11 +5,22 @@ const authorInput = document.getElementById('author');
 
 const books = [];
 
+// Templete for book collection
+
+class BookCollection {
+  constructor(title,author){
+    this.title=title;
+    this.author=author;
+  }
+};
+
 addButton.addEventListener('click', () => {
   const titletext = titleInput.value;
   const authorText = authorInput.value;
 
-  books.push({ title: titletext, author: authorText });
+  let book= new BookCollection(titletext,authorText);
+
+  books.push(book);
   let items = '';
 
   books.forEach((item, index) => {
