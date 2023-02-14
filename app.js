@@ -1,7 +1,7 @@
-const bookCollection = document.querySelector(".bookshelf");
-const addButton = document.querySelector(".submit");
-const titleInput = document.getElementById("title");
-const authorInput = document.getElementById("author");
+const bookCollection = document.querySelector('.bookshelf');
+const addButton = document.querySelector('.submit');
+const titleInput = document.getElementById('title');
+const authorInput = document.getElementById('author');
 
 const books = [];
 class BookCollection {
@@ -11,26 +11,26 @@ class BookCollection {
   }
 
   getTitle() {
-   return this.title.value
-  };
+    return this.title.value;
+  }
 
   getAuthor() {
-   return this.author.value;
+    return this.author.value;
   }
 }
 
-let newBook = new BookCollection(titleInput, authorInput);
+const newBook = new BookCollection(titleInput, authorInput);
 
-addButton.addEventListener("click", () => {
-  const titletext = newBook.getTitle()
-  const authorText = newBook.getAuthor()
+addButton.addEventListener('click', () => {
+  const titletext = newBook.getTitle();
+  const authorText = newBook.getAuthor();
 
-  if (titletext === "" || authorText == "") {
+  if (titletext === '' || authorText === '') {
     return;
   }
 
   books.push({ title: titletext, author: authorText });
-  let items = "";
+  let items = '';
 
   books.forEach((item, index) => {
     items += `<div class="coll${index} collection">
@@ -45,21 +45,21 @@ addButton.addEventListener("click", () => {
   bookCollection.innerHTML = items;
   /* eslint-disable no-use-before-define */
   saveData();
-  titleInput.value = "";
-  authorInput.value = "";
+  titleInput.value = '';
+  authorInput.value = '';
 });
 
 /* eslint-disable no-use-before-define */
 function saveData() {
   const stringify = JSON.stringify(books);
-  localStorage.setItem("data", stringify);
+  localStorage.setItem('data', stringify);
 }
 
 /* eslint-disable no-unused-vars */
 function removeItem(i) {
   books.splice(i, 1);
 
-  let items = "";
+  let items = '';
   books.forEach((item, index) => {
     items += `<div class="coll${index} collection">
  <div class='bookinfo'>
@@ -70,13 +70,13 @@ function removeItem(i) {
  </div>`;
   });
 
-  bookCollection.innerHTML = "";
+  bookCollection.innerHTML = '';
   bookCollection.innerHTML = items;
 
   let stringify = JSON.stringify(books);
-  if (stringify === "[]") {
-    stringify = "";
+  if (stringify === '[]') {
+    stringify = '';
   }
 
-  localStorage.setItem("data", stringify);
+  localStorage.setItem('data', stringify);
 }
