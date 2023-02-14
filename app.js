@@ -4,13 +4,34 @@ const titleInput = document.getElementById("title");
 const authorInput = document.getElementById("author");
 
 const books = [];
+class BookCollection {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+  }
+
+  getTitle() {
+   return this.title.value
+  };
+
+  getAuthor() {
+   return this.author.value;
+  }
+
+  addButton() {
+    const titleText = this.getTitle();
+    const authorText = this.getAuthor()
+  }
+}
+
+let newBook = new BookCollection(titleInput, authorInput);
 
 addButton.addEventListener("click", () => {
-  const titletext = titleInput.value;
-  const authorText = authorInput.value;
+  const titletext = newBook.getTitle()
+  const authorText = newBook.getAuthor()
 
-  if(titletext === '' || authorText == '') {
-    return
+  if (titletext === "" || authorText == "") {
+    return;
   }
 
   books.push({ title: titletext, author: authorText });
