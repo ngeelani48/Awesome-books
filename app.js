@@ -83,3 +83,28 @@ function removeItem(i) {
 }
 
 removeItem();
+
+// navigation interaction
+const booklist = document.getElementById('bookshelf');
+const list = document.getElementById('list');
+const addNew = document.getElementById('addNew');
+const contact = document.getElementById('contact');
+const form = document.getElementById('form');
+const contactSection = document.getElementById('contact-section');
+list.addEventListener('click', () => {
+  booklist.style.display = '';
+  form.style.display = 'none';
+  contactSection.style.display = 'none';
+});
+addNew.addEventListener('click', () => {
+  booklist.style.display = 'none';
+  form.style.display = '';
+  contactSection.style.display = 'none';
+});
+contact.addEventListener('click', () => {
+  booklist.style.display = 'none';
+  form.style.display = 'none';
+  contactSection.style.display = '';
+});
+
+list.click();
