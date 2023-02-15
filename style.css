@@ -35,6 +35,9 @@
   font-size: 0.9rem;
   user-select: none;
 }
+.item:hover{
+  cursor: pointer;
+}
 
 .item:nth-child(1),
 .item:nth-child(2) {
@@ -169,4 +172,28 @@ form:hover button {
   font-family: var(--comic-sans);
   margin: auto 10px;
   font-weight: 700;
+}
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.contact-text {
+  
+  font-family: var(--comic-sans);
+  color: #000;
+  font-weight: 700;
+  font-size: 1rem;
+  justify-content: center;
+  align-content: center;
+}
+.contact-info  {
+  flex-direction: column;
+  font-family: var(--comic-sans);
+  color: #000;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-left: -6rem;
 }
