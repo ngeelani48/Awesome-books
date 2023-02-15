@@ -83,3 +83,18 @@ function removeItem(i) {
 }
 
 removeItem();
+// dynamic page for contact section
+
+const contactInfo=document.getElementById('contact');
+const btn=document.getElementById('click');
+btn.addEventListener('click', function(){
+contactInfo.innerHTML=`<div class="contact-title"><h2>Contact information</h2></div>
+<div class="contact-text"><p>Do have any questions or you just want to say "Hello"? you can reach out to us!</p></div>
+<div class="contact-info">
+    <ul>
+        <li>Our e-mail:mail@mail.com</li>
+        <li>Our phone number:0043586534422</li>
+        <li>Our address:Street22,84503 City,Country</li>
+    </ul>
+</div>`;
+});
