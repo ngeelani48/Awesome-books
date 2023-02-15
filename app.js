@@ -1,7 +1,8 @@
-const bookCollection = document.querySelector('.bookshelf');
-const addButton = document.querySelector('.submit');
-const titleInput = document.getElementById('title');
-const authorInput = document.getElementById('author');
+const bookCollection = document.querySelector(".bookshelf");
+const addButton = document.querySelector(".submit");
+const titleInput = document.getElementById("title");
+const authorInput = document.getElementById("author");
+let contact = document.querySelector(".contact");
 
 class BookCollection {
   constructor(title, author) {
@@ -21,26 +22,25 @@ class BookCollection {
   getAuthor() {
     return this.author.value;
   }
-
 }
 
 const newBook = new BookCollection(titleInput, authorInput);
 
 function saveData() {
   const stringify = JSON.stringify(newBook.books);
-  localStorage.setItem('data', stringify);
+  localStorage.setItem("data", stringify);
 }
 
-addButton.addEventListener('click', () => {
+addButton.addEventListener("click", () => {
   const titletext = newBook.getTitle();
   const authorText = newBook.getAuthor();
 
-  if (titletext === '' || authorText === '') {
+  if (titletext === "" || authorText === "") {
     return;
   }
 
   newBook.addBook({ title: titletext, author: authorText });
-  let items = '';
+  let items = "";
 
   newBook.books.forEach((item, index) => {
     items += `<div class="coll${index} collection">
@@ -54,14 +54,14 @@ addButton.addEventListener('click', () => {
 
   bookCollection.innerHTML = items;
   saveData();
-  titleInput.value = '';
-  authorInput.value = '';
+  titleInput.value = "";
+  authorInput.value = "";
 });
 
 function removeItem(i) {
   newBook.books.splice(i, 1);
 
-  let items = '';
+  let items = "";
   newBook.books.forEach((item, index) => {
     items += `<div class="coll${index} collection">
  <div class='bookinfo'>
@@ -72,16 +72,28 @@ function removeItem(i) {
  </div>`;
   });
 
-  bookCollection.innerHTML = '';
+  bookCollection.innerHTML = "";
   bookCollection.innerHTML = items;
 
   let stringify = JSON.stringify(newBook.books);
-  if (stringify === '[]') {
-    stringify = '';
+  if (stringify === "[]") {
+    stringify = "";
   }
 
-  localStorage.setItem('data', stringify);
+  localStorage.setItem("data", stringify);
 }
 
-removeItem();
+contact.innerHTML = ` 
+<h2>Contact information</h2>
+<p>
+    Do you have any questions or you just want to 
+    say "Hello"?<br>You can reach out to us!
+</p>
 
+<ul class="contact-info">
+    <li>Our email: johndoe1987@gmail.com</li>
+    <li>Our phone number: (425) 555-0198</li>
+    <li>Our address: 742 Maple Street, Springfield</li>
+</ul>`;
+
+removeItem();
