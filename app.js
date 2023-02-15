@@ -3,11 +3,15 @@ const addButton = document.querySelector('.submit');
 const titleInput = document.getElementById('title');
 const authorInput = document.getElementById('author');
 
-const books = [];
 class BookCollection {
   constructor(title, author) {
     this.title = title;
     this.author = author;
+    this.books = [];
+  }
+
+  addBook(item) {
+    this.books.push(item);
   }
 
   getTitle() {
@@ -21,6 +25,11 @@ class BookCollection {
 
 const newBook = new BookCollection(titleInput, authorInput);
 
+function saveData() {
+  const stringify = JSON.stringify(newBook.books);
+  localStorage.setItem('data', stringify);
+}
+
 addButton.addEventListener('click', () => {
   const titletext = newBook.getTitle();
   const authorText = newBook.getAuthor();
@@ -29,10 +38,10 @@ addButton.addEventListener('click', () => {
     return;
   }
 
-  books.push({ title: titletext, author: authorText });
+  newBook.addBook({ title: titletext, author: authorText });
   let items = '';
 
-  books.forEach((item, index) => {
+  newBook.books.forEach((item, index) => {
     items += `<div class="coll${index} collection">
     <div class='bookinfo'>
     <p class='title'>"${item.title}" by</p>
@@ -43,24 +52,16 @@ addButton.addEventListener('click', () => {
   });
 
   bookCollection.innerHTML = items;
-  /* eslint-disable no-use-before-define */
   saveData();
   titleInput.value = '';
   authorInput.value = '';
 });
 
-/* eslint-disable no-use-before-define */
-function saveData() {
-  const stringify = JSON.stringify(books);
-  localStorage.setItem('data', stringify);
-}
-
-/* eslint-disable no-unused-vars */
 function removeItem(i) {
-  books.splice(i, 1);
+  newBook.books.splice(i, 1);
 
   let items = '';
-  books.forEach((item, index) => {
+  newBook.books.forEach((item, index) => {
     items += `<div class="coll${index} collection">
  <div class='bookinfo'>
  <p class='title'>${item.title} by</p>
@@ -73,10 +74,12 @@ function removeItem(i) {
   bookCollection.innerHTML = '';
   bookCollection.innerHTML = items;
 
-  let stringify = JSON.stringify(books);
+  let stringify = JSON.stringify(newBook.books);
   if (stringify === '[]') {
     stringify = '';
   }
 
   localStorage.setItem('data', stringify);
 }
+
+removeItem();
