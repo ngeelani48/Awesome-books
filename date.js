@@ -1,27 +1,27 @@
-let dateWrapper = document.querySelector(".date");
+const dateWrapper = document.querySelector('.date');
 
 const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 
 function countTime() {
-  let newDate = new Date();
+  const newDate = new Date();
 
-  let month = newDate.getMonth();
-  let day = newDate.getDay();
-  let year = newDate.getFullYear();
-  let time = `${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}`;
+  const month = newDate.getMonth();
+  const day = newDate.getDay();
+  const year = newDate.getFullYear();
+  const time = `${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}`;
   dateWrapper.innerHTML = `${monthNames[month]} ${day} ${year}, ${time}`;
 }
 
