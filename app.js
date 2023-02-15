@@ -21,6 +21,7 @@ class BookCollection {
   getAuthor() {
     return this.author.value;
   }
+
 }
 
 const newBook = new BookCollection(titleInput, authorInput);
@@ -83,3 +84,4 @@ function removeItem(i) {
 }
 
 removeItem();
+

@@ -12,29 +12,47 @@
 </head>
 
 <body>
+    <nav class="navbar">
+        <h1 class="title-header">Awesome books</h1>
+        <ul class="navigation-items">
+            <li class="item a">List</li>
+            <li class="item b">Add new</li>
+            <li class="item c">Contact</li>
+        </ul>
+    </nav>
 
-    <h1 class="heading">All awesome Books</h1>
+    <section class="page1">
 
-    <div class="bookshelf" id="bookshelf">
-    </div>
+        <div class="date"></div>
 
-    <form action="" method="post">
-        <label for="Title">
-            <input type="text" name="title" id="title" placeholder="Title" required>
-        </label>
-<br>
-        <label for="Author">
-            <input type="text" name="Author" id="author" placeholder="Author" required>
-
-        </label><br>
-
-        <label for="button">
-            <button class="submit" id="submit" type="button">Add</button>
-
-        </label>
-    </form>
+        <h1 class="heading">All awesome Books</h1>
+        <div class="bookshelf" id="bookshelf">
+        </div>
+    
+        <form action="" method="post">
+            <label for="Title">
+                <input type="text" name="title" id="title" placeholder="Title" required>
+            </label>
+    <br>
+            <label for="Author">
+                <input type="text" name="Author" id="author" placeholder="Author" required>
+    
+            </label><br>
+    
+            <label for="button">
+                <button class="submit" id="submit" type="button">Add</button>
+    
+            </label>
+        </form>
+    </section>
+   
+    <section class="copyright">
+       <p>Copyright</p>
+    </section>
 
     <script src="./app.js"></script>
+    <script src="./date.js"></script>
+    <script src="./spa.js"></script>
 
 </body>
 
