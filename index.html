@@ -15,9 +15,9 @@
     <nav class="navbar">
         <h1 class="title-header">Awesome books</h1>
         <ul class="navigation-items">
-            <li class="item a">List</li>
-            <li class="item b">Add new</li>
-            <li class="item c">Contact</li>
+            <li class="item a" id="list">List</li>
+            <li class="item b" id="addNew">Add new</li>
+            <li class="item c" id="contact">Contact</li>
         </ul>
     </nav>
 
@@ -25,11 +25,27 @@
 
         <div class="date"></div>
 
-        <h1 class="heading">All awesome Books</h1>
-        <div class="bookshelf" id="bookshelf">
+        <div id="bookshelf">
+            <h1 class="heading">All awesome Books</h1>
+        <div class="bookshelf">
+            
         </div>
-    
-        <form action="" method="post">
+    </div>
+        <div class="contact-section" id="contact-section">
+            <h1 class="heading">Contact information</h1>
+            <div class="content">
+<div class="contact-text"><p>Do have any questions or you just want to say "Hello"? <br> you can reach out to us!</p></div>
+<div >
+    <ul class="contact-info">
+        <li>Our e-mail:mail@mail.com</li>
+        <li>Our phone number:0043586534422</li>
+        <li>Our address:Street22,84503 City,Country</li>
+    </ul>
+</div>
+        </div>
+    </div>
+        <form action="" method="post" id="form">
+            <h1 class="heading">Add a New Book</h1>
             <label for="Title">
                 <input type="text" name="title" id="title" placeholder="Title" required>
             </label>
@@ -52,7 +68,6 @@
 
     <script src="./app.js"></script>
     <script src="./date.js"></script>
-    <script src="./spa.js"></script>
 
 </body>
 
